@@ -35,11 +35,13 @@ export class AppComponent {
 
   getFilteredData(event: any) {
     let slug = event.slug;
+    console.log(slug)
     this.http.get(this.api + '/' + slug).subscribe((item: any) => {
-      this.filteredData = item.data.matches;
+      this.filteredData = item.data;
+      console.log(item)
       this.showFiltered = true;
       console.log(this.filteredData)
-      this.cdr.detectChanges(); // Trigger change detection
+      // this.cdr.detectChanges(); // Trigger change detection
     });
     console.log(this.filteredData)
   }

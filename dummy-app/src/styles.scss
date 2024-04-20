@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-mdc-tab-list{
+    flex-grow: unset!important;
+  }
+
+  .mat-mdc-tab.mdc-tab {
+    width: 33vw;
+    height: 48px !important;
+    color: red;
+    box-shadow: 0px 7px 3px 1px gray;
+  }
