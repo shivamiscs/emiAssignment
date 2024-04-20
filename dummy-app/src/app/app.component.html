@@ -1,0 +1,86 @@
+<button (click)="showAllData()" class="tab-buttons">All</button>
+<ng-container *ngFor="let button of tabs">
+  <button (click)="getFilteredData(button)" class="tab-buttons">{{ button.name }}</button>
+</ng-container>
+
+<ng-container *ngIf="showFiltered; else allMatches">
+  <div class="section-title" *ngFor="let item of getKeys(filteredData)">
+    <div class="main-title">{{ item }}</div>
+    <ng-container *ngFor="let tournament of getKeys(filteredData[item])">
+      <h3 style="text-align: left;">
+        <p style="text-decoration: none;color: #2c9bff;font-family: sans-serif;">{{ tournament }}</p>
+      </h3>
+      <div style="display: flex;">
+        <div class="card" *ngFor="let match of filteredData[item][tournament]">
+          <span style="display: flex; font-family: sans-serif;">
+            <p>{{match.match_number_with_format }} </p> <p>•</p> <p> {{ match.venue_location}} </p>
+          </span>
+          <div style="display: flex; justify-content: space-between;">
+            <span class="left" style="font-family: sans-serif; font-weight: 700; color: #a0a0a0;">
+              <p style="display: flex; justify-content: space-between;">
+                <span>
+                  <img  src={{match.t1_flag}} alt="flg">
+                </span>
+                <span style="margin: 0 10px;">
+                  {{ match.t1_key }}
+                </span>
+              </p>
+              <p style="display: flex; justify-content: space-between;">
+                <span>
+                  <img  src={{match.t2_flag}} alt="flg">
+                </span>
+                <span>
+                  {{ match.t2_key }}
+                </span>
+              </p>
+            </span>
+            <span class="right">
+              <p> {{ match.venue_country }}</p>
+            </span>
+        </div>
+      </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #allMatches>
+  <div class="section-title" *ngFor="let item of getKeys(matchesData)">
+    <div class="main-title">{{ item }}</div>
+    <ng-container *ngFor="let tournament of getKeys(matchesData[item])">
+      <h3 style="text-align: left;">
+        <p style="text-decoration: none;color: #2c9bff;font-family: sans-serif;">{{ tournament }}</p>
+      </h3>
+      <div style="display: flex;">
+        <div class="card" *ngFor="let match of matchesData[item][tournament]">
+          <span style="display: flex; font-family: sans-serif;">
+            <p>{{match.match_number_with_format }} </p> <p>•</p> <p> {{ match.venue_location}} </p>
+          </span>
+          <div style="display: flex; justify-content: space-between;">
+            <span class="left" style="font-family: sans-serif; font-weight: 700; color: #a0a0a0;">
+              <p style="display: flex; justify-content: space-between;">
+                <span>
+                  <img  src={{match.t1_flag}} alt="flg">
+                </span>
+                <span style="margin: 0 10px;">
+                  {{ match.t1_key }}
+                </span>
+              </p>
+              <p style="display: flex; justify-content: space-between;">
+                <span>
+                  <img  src={{match.t2_flag}} alt="flg">
+                </span>
+                <span>
+                  {{ match.t2_key }}
+                </span>
+              </p>
+            </span>
+            <span class="right">
+              <p> {{ match.venue_country }}</p>
+            </span>
+            </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
